@@ -16,8 +16,8 @@ class CourseController extends Controller
     }
     
     public function show(int $id) {
-        $cousre = Course::findOrFail($id);
+        $course = Course::findOrFail($id);
 
-        return view('', compact('coures'));
+        return view('course', compact('course'));
     }
 }

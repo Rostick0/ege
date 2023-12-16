@@ -305,6 +305,18 @@ textarea {
 
 .coures__plan_title {}
 
+.coures__plan_list {
+	counter-reset: num;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.coures__plan_item::before {
+    content: counter(num) " - "; 
+	counter-increment: num;
+}
+
 .course__paragraphs {
     display: flex;
     flex-direction: column;
