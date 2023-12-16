@@ -20,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $teachers = User::where('role', 'teacher')->get();
-    $lessons = Lesson::orderByDesc('id')->limit(6);
+    $lessons = Lesson::orderByDesc('id')->limit(6)->get();
 
     return view('pages.index', compact('teachers', 'lessons'));
 });
+
 
 Route::group([
     'middleware' => 'guest',
@@ -41,6 +42,16 @@ Route::group([
 
 Route::resource('course', CourseController::class)->only(['index', 'show']);
 Route::resource('lesson', LessonController::class)->only(['index', 'show']);
+
+Route::get('teachers', function () {
+    $teachers = User::where('role', 'teacher')->get();
+   
+    return view('pages.teachers', compact('teachers'));
+});
+
+Route::get('contact', function () {
+    return view('pages.contact');
+});
 
 Route::group([
     'middleware' => 'auth'
