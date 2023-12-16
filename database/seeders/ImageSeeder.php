@@ -35,7 +35,6 @@ class ImageSeeder extends Seeder
                 'height' => '400',
                 'path' => url()->current() . '/storage/upload/image/teacher-3.jpg',
             ],
-            
         ];
 
         Image::insert($images);

@@ -15,13 +15,16 @@ class Lesson extends Model
         'description',
         'course_id',
         'image_id',
+        'has_homework',
     ];
 
-    public function course(): BelongsTo {
+    public function course(): BelongsTo
+    {
         return $this->belongsTo(Course::class);
     }
 
-    public function image(): BelongsTo {
+    public function image(): BelongsTo
+    {
         return $this->belongsTo(Image::class);
     }
 }

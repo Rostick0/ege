@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->integer('image_id')->nullable();
+            $table->boolean('has_homework')->default(0);
             $table->timestamps();
         });
     }
