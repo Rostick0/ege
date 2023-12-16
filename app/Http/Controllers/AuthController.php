@@ -19,7 +19,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('login');
+        return $this::redirectLog();
     }
 
     public function register(RegisterAuthRequest $request)
@@ -29,5 +29,16 @@ class AuthController extends Controller
         event(new Registered($user));
 
         auth()->login($user);
+
+        return $this::redirectLog();
+    }
+
+    public static function redirectLog() {
+        if (auth()->user()?->role === 'student') return redirect()->route('student');
+     
+        if (auth()->user()?->role === 'teacher') return redirect()->route('teacher');
+
+
+        return redirect()->route('login');
     }
 }

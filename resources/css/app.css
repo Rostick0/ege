@@ -121,6 +121,17 @@ textarea {
     row-gap: 4px;
 }
 
+.error {
+    color: rgb(235, 40, 50);
+    font-size: 14px;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
 
 
 
@@ -158,6 +169,8 @@ textarea {
 }
 
 .main {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     padding: 40px 0;
 }
@@ -317,12 +330,6 @@ textarea {
 	counter-increment: num;
 }
 
-.course__paragraphs {
-    display: flex;
-    flex-direction: column;
-    row-gap: 8px;
-}
-
 .course__duration_count {
     font-size: 20px;
 }
@@ -343,4 +350,27 @@ textarea {
 
 .course-buy__text {
     font-size: 14px;
+}
+
+
+
+
+.auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.auth__inner {
+    width: 100%;
+    max-width: 300px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
 }

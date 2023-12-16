@@ -8,6 +8,12 @@
             <a class="header__link" href="#index-teacher">Отзывы</a>
             <a class="header__link" href="#contact">Контакты</a>
         </nav>
-        <button class="btn header__button">Войти</button>
+        @auth
+            <a class="btn header__button"
+                href="{{ auth()->user()->role === 'teacher' ? route('teacher') : route('student') }}">Профиль</a>
+        @endauth
+        @guest
+            <a class="btn header__button" href="{{ route('login') }}">Войти</a>
+        @endguest
     </div>
 </header>

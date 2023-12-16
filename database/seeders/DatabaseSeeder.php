@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             UserSeeder::class,
             CourseSeeder::class,
-            // LessonSeeder::class,
+            LessonSeeder::class,
         ]);
     }
 }

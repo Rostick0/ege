@@ -12,12 +12,12 @@ class CourseController extends Controller
     {
         $courses = Course::all();
     
-        return view('', compact('courses'));
+        return view('pages.courses', compact('courses'));
     }
     
     public function show(int $id) {
         $course = Course::findOrFail($id);
 
-        return view('course', compact('course'));
+        return view('pages.course', compact('course'));
     }
 }

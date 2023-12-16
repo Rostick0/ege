@@ -18,54 +18,13 @@ class LessonController extends Controller
         $course = Course::findOrFail($request->course_id);
         $lessons = Lesson::where('course_id', $request->course_id);
 
-        return view('', compact('course', 'lessons'));
+        return view('pages.lessons', compact('course', 'lessons'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLessonRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
-        //
-    }
+        $lesson = Lesson::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLessonRequest $request, int $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(int $id)
-    {
-        //
+        return view('pages.lesson', compact('lesson'));
     }
 }

@@ -12,7 +12,7 @@
             <div class="container course__container">
                 <div class="course__description_short">
                     <h2 class="title course__title">О чем курс:</h2>
-                    <div class="course__paragraphs">{!! $course->short_description !!}</div>
+                    <div class="paragraphs">{!! $course->short_description !!}</div>
                 </div>
                 <div class="course__grid">
                     <div class="course__plan">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="course__description">
                     <h2 class="title course__title">Описание:</h2>
-                    <div class="course__paragraphs">{!! $course->description !!}</div>
+                    <div class="paragraphs">{!! $course->description !!}</div>
                 </div>
                 <div class="course-buy">
                     <button class="btn course-buy__button">Приобрести</button>
