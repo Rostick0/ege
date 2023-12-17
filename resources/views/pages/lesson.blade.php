@@ -12,18 +12,24 @@
                 <div class="lesson__description paragraphs">{!! $lesson->description !!}</div>
                 @auth
                     @if ($lesson->has_homework && auth()->user()->role === 'student')
-                        <form class="lesson-form" action="" method="POST">
+                        <form class="lesson-form" action="/homework" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="" value="">
+                            <input type="hidden" name="lesson_id" value="{{ $lesson->id }}" required>
                             <div class="lesson-form__fields">
                                 <label class="label lesson-form__label">
                                     <span>Комментарий к работе</span>
-                                    <textarea class="input lesson-form__input" type="text" name="comment" rows="3"></textarea>
+                                    <textarea class="input lesson-form__input" name="comment" rows="3" maxlength="65536"></textarea>
+                                    @error('comment')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </label>
                                 <label class="label lesson-form__label">
                                     <span>Файл</span>
                                     <input class="input lesson-form__input" type="file" name="file"
                                         accept=".pdf,.doc,.docx,.txt" required>
+                                    @error('file')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </label>
                             </div>
                             <button class="btn lesson-form__btn">Отправить</button>

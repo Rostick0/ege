@@ -25,7 +25,7 @@ class UpdateHomeworkRequest extends FormRequest
             return [
                 'mark' => 'required|numeric|min:1|max:5',
                 'answer' => 'nullable|max:255',
-                'answer_file_id' => 'nullable|file',
+                'answer_file' => 'nullable|file',
             ];
         }
 

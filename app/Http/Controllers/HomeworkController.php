@@ -5,31 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Homework;
 use App\Http\Requests\StoreHomeworkRequest;
 use App\Http\Requests\UpdateHomeworkRequest;
+use App\Utils\FileUtil;
 
 class HomeworkController extends Controller
 {
-    public function requestOnly()
-    {
-        if (auth()?->user()->role === 'teacher') {
-            return [
-                'mark',
-                'answer',
-                'answer_file_id',
-            ];
-        }
-
-        return [
-            'file',
-            'comment',
-            'lesson_id',
-        ];
-    }
-
     public function store(StoreHomeworkRequest $request)
     {
-        Homework::create([
-            ...$request->validated(),
+        $file_id = FileUtil::upload($request->file('file'));
+
+        Homework::firstOrCreate([
+            'lesson_id' => $request->lesson_id,
             'student_id' => auth()->id(),
+        ], [
+            ...$request->validated(),
+            'file_id' => $file_id,
         ]);
 
         return redirect()->back();
@@ -37,6 +26,14 @@ class HomeworkController extends Controller
 
     public function update(UpdateHomeworkRequest $request, int $id)
     {
+        $data = [...$request->validated()];
+
+        if (auth()->user()->role === 'teacher' && $request->hasFile('answer_file')) {
+            $data['answer_file_id'] = FileUtil::upload($request->file('answer_file'));
+        } else if (auth()->user()->role === 'student' && $request->hasFile('file')) {
+            $data['file_id'] = FileUtil::upload($request->file('file'));
+        }
+
         Homework::findOrFail($id)->update([
             ...$request->validated(),
         ]);
@@ -51,7 +48,7 @@ class HomeworkController extends Controller
             'student_id' =>  auth()->id()
         ])->delete();
 
-        
+
 
         return redirect()->back();
     }
