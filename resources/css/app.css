@@ -91,6 +91,7 @@ textarea {
     color: rgb(255, 255, 255);
     border-radius: .75rem;
     cursor: pointer;
+    display: inline-block;
     font-size: 16px;
     padding: 10px 15px;
     transition: .2s;
@@ -150,6 +151,22 @@ textarea {
     display: flex;
     column-gap: 10px;
     margin-bottom: 24px;
+}
+
+.mark-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.mark-table__th {
+    background-color: rgb(170, 105, 225);
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.mark-table__td {
+    padding: 10px;
 }
 
 .pagination__link._active {

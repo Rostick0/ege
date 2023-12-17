@@ -44,20 +44,19 @@
                             <div>
                                 <strong>Файл с
                                     исправлениями:</strong>
-                                {{ $lesson->myHomework->answer_file ? '<a class="ui-color" href="' . Storage::url($lesson->myHomework->answer_file->path) . '">Посмотреть</a>' : '-' }}
+                                {!! $lesson->myHomework->answer_file ? '<a class="ui-color" href="' . Storage::url($lesson->myHomework->answer_file->path) . '">Посмотреть</a>' : '-' !!}
                             </div>
                             <div>
                                 <strong>Ответ от преподавателя:</strong> {{ $lesson->myHomework->answer ?? '-' }}
                             </div>
                             <br>
-                            @if ($lesson->myHomework->status === 'marked')
-                            
+                            @if ($lesson->myHomework->status !== 'marked')
+                                <form action="/homework/{{ $lesson->myHomework->id }}" method="POST">
+                                    @csrf
+                                    <input class="input" name="_method" value="delete" type="hidden">
+                                    <button class="error">Удалить решение</button>
+                                </form>
                             @endif
-                            <form action="/homework/{{ $lesson->myHomework->id }}" method="POST">
-                                @csrf
-                                <input class="input" name="_method" value="delete" type="hidden">
-                                <button class="error">Удалить решение</button>
-                            </form>
                         @endif
                     @endif
                 @endauth

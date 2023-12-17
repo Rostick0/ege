@@ -36,9 +36,7 @@ class HomeworkController extends Controller
             $data['file_id'] = FileUtil::upload($request->file('file'));
         }
 
-        Homework::findOrFail($id)->update([
-            ...$request->validated(),
-        ]);
+        Homework::findOrFail($id)->update($data);
 
         return redirect()->back();
     }

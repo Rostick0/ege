@@ -2,51 +2,64 @@
 
 @section('html')
     <main class="main">
-        <div class="lesson">
-            <div class="lesson__banner">
-                <div class="container">
-                    <h1 class="title lesson__title">{{ $lesson->title }}</h1>
-                </div>
-            </div>
-            <div class="container">
-                <div class="lesson__description paragraphs">{!! $lesson->description !!}</div>
-                <!-- <form class="lesson-form">
-                    <div class="lesson-form__fields">
-                        <label class="label lesson-form__label">
-                            <span>Комментарий к работе</span>
-                            <textarea class="input lesson-form__input" type="text" name="comment" rows="3"></textarea>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Файл</span>
-                            <input class="input lesson-form__input" type="file" name="file" accept=".pdf,.doc,.docx,.txt" required>
-                        </label>
-                    </div>
-                    <button class="btn lesson-form__btn">Отправить</button>
-                </form> -->
-                {{-- <form class="lesson-form">
-                    <div class="lesson-form__fields">
-                        <label class="label lesson-form__label">
-                            <span>Отметка</span>
-                            <select class="input" name="mark">
-                                <option value="5">5</option>
-                                <option value="4">4</option>
-                                <option value="3">3</option>
-                                <option value="2">2</option>
-                                <option value="1">1</option>
-                            </select>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Ответ к заданию</span>
-                            <textarea class="input lesson-form__input" type="text" name="answer" rows="3" required></textarea>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Файл</span>
-                            <input class="input lesson-form__input" type="file" name="answer_file_id"
-                                accept=".pdf,.doc,.docx,.txt">
-                        </label>
-                    </div>
-                    <button class="btn lesson-form__btn">Отправить</button>
-                </form> --}}
+        <div class="index-lesson" id="index-lesson">
+            <div class="container index-lesson__container">
+                <h2 class="title index-lesson__title">Ожидают оценки</h2>
+                <table class="mark-table">
+                    <tr>
+                        <th class="mark-table__th">Название урока</th>
+                        <th class="mark-table__th">Курс</th>
+                        <th class="mark-table__th">Имя пользователя</th>
+                        <th class="mark-table__th">Действие</th>
+                    </tr>
+                    @foreach ($homeworks as $homework)
+                        <tr>
+                            {{-- @dd($homework) --}}
+                            <td class="mark-table__td">
+                                <a class="ui-color"
+                                    href="/lesson/{{ $homework->lesson->id }}">{{ $homework->lesson->title }}</a>
+                            </td>
+                            <td class="mark-table__td">
+                                <a class="ui-color" href="/course/{{ $homework->lesson->course_id }}">
+                                    {{ $homework->lesson?->course?->title }}</a>
+                            </td>
+                            <td>{{ $homework->student?->name }}</td>
+                            <td class="mark-table__td">
+                                <a class="btn" href="/teacher/homework/{{ $homework->id }}">Оценить</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                {{ $homeworks->appends(Request::all())->links('vendor.pagination') }}
+                <br>
+                <br>
+                <h2 class="title index-lesson__title">Оцененно</h2>
+                <table class="mark-table">
+                    <tr>
+                        <th class="mark-table__th">Название урока</th>
+                        <th class="mark-table__th">Курс</th>
+                        <th class="mark-table__th">Имя пользователя</th>
+                        <th class="mark-table__th">Действие</th>
+                    </tr>
+                    @foreach ($homeworks_marked as $homework)
+                        <tr>
+                            {{-- @dd($homework) --}}
+                            <td class="mark-table__td">
+                                <a class="ui-color"
+                                    href="/lesson/{{ $homework->lesson->id }}">{{ $homework->lesson->title }}</a>
+                            </td>
+                            <td class="mark-table__td">
+                                <a class="ui-color" href="/course/{{ $homework->lesson->course_id }}">
+                                    {{ $homework->lesson?->course?->title }}</a>
+                            </td>
+                            <td>{{ $homework->student?->name }}</td>
+                            <td class="mark-table__td">
+                                <a class="btn" href="/teacher/homework/{{ $homework->id }}">Изменить</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                {{ $homeworks_marked->appends(Request::all())->links('vendor.pagination') }}
             </div>
         </div>
     </main>
