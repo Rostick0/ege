@@ -28,8 +28,10 @@ class HomeworkController extends Controller
     {
         $data = [...$request->validated()];
 
-        if (auth()->user()->role === 'teacher' && $request->hasFile('answer_file')) {
-            $data['answer_file_id'] = FileUtil::upload($request->file('answer_file'));
+        if (auth()->user()->role === 'teacher') {
+            if ($request->hasFile('answer_file')) $data['answer_file_id'] = FileUtil::upload($request->file('answer_file'));
+
+            $data['status'] = 'marked';
         } else if (auth()->user()->role === 'student' && $request->hasFile('file')) {
             $data['file_id'] = FileUtil::upload($request->file('file'));
         }
@@ -45,10 +47,8 @@ class HomeworkController extends Controller
     {
         $homework = Homework::where([
             'id' => $id,
-            'student_id' =>  auth()->id()
+            'student_id' => auth()->id()
         ])->delete();
-
-
 
         return redirect()->back();
     }

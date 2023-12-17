@@ -19,21 +19,21 @@ class ImageSeeder extends Seeder
                 'name' => 'Репетитор 1',
                 'width' => '400',
                 'height' => '400',
-                'path' => url()->current() . '/storage/upload/image/teacher-1.jpg',
+                'path' => url()->current() . '/storage/image/teacher-1.jpg',
             ],
             [
                 'id' => 2,
                 'name' => 'Репетитор 2',
                 'width' => '400',
                 'height' => '400',
-                'path' => url()->current() . '/storage/upload/image/teacher-2.jpg',
+                'path' => url()->current() . '/storage/image/teacher-2.jpg',
             ],
             [
                 'id' => 3,
                 'name' => 'Репетитор 3',
                 'width' => '400',
                 'height' => '400',
-                'path' => url()->current() . '/storage/upload/image/teacher-3.jpg',
+                'path' => url()->current() . '/storage/image/teacher-3.jpg',
             ],
         ];
 

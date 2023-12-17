@@ -27,4 +27,8 @@ class Lesson extends Model
     {
         return $this->belongsTo(Image::class);
     }
+
+    public function myHomework() {
+        return $this->hasOne(Homework::class)->where('student_id', auth()->id());
+    }
 }
