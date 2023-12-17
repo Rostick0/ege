@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lesson;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -18,7 +19,9 @@ class LessonController extends Controller
 
         $lessons = $lessons->paginate(18);
 
-        return view('pages.lessons', compact('lessons'));
+        $courses = Course::all();
+
+        return view('pages.lessons', compact('lessons', 'courses'));
     }
 
     public function show(int $id)

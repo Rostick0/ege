@@ -146,6 +146,12 @@ textarea {
     min-width: 25px;
 }
 
+.form-search {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 24px;
+}
+
 .pagination__link._active {
     background-color: black;
 }
