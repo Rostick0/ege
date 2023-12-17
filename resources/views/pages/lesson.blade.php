@@ -10,43 +10,26 @@
             </div>
             <div class="container">
                 <div class="lesson__description paragraphs">{!! $lesson->description !!}</div>
-                <!-- <form class="lesson-form">
-                    <div class="lesson-form__fields">
-                        <label class="label lesson-form__label">
-                            <span>Комментарий к работе</span>
-                            <textarea class="input lesson-form__input" type="text" name="comment" rows="3"></textarea>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Файл</span>
-                            <input class="input lesson-form__input" type="file" name="file" accept=".pdf,.doc,.docx,.txt" required>
-                        </label>
-                    </div>
-                    <button class="btn lesson-form__btn">Отправить</button>
-                </form> -->
-                {{-- <form class="lesson-form">
-                    <div class="lesson-form__fields">
-                        <label class="label lesson-form__label">
-                            <span>Отметка</span>
-                            <select class="input" name="mark">
-                                <option value="5">5</option>
-                                <option value="4">4</option>
-                                <option value="3">3</option>
-                                <option value="2">2</option>
-                                <option value="1">1</option>
-                            </select>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Ответ к заданию</span>
-                            <textarea class="input lesson-form__input" type="text" name="answer" rows="3" required></textarea>
-                        </label>
-                        <label class="label lesson-form__label">
-                            <span>Файл</span>
-                            <input class="input lesson-form__input" type="file" name="answer_file_id"
-                                accept=".pdf,.doc,.docx,.txt">
-                        </label>
-                    </div>
-                    <button class="btn lesson-form__btn">Отправить</button>
-                </form> --}}
+                @auth
+                    @if ($lesson->has_homework && auth()->user()->role === 'student')
+                        <form class="lesson-form" action="" method="POST">
+                            @csrf
+                            <input type="hidden" name="" value="">
+                            <div class="lesson-form__fields">
+                                <label class="label lesson-form__label">
+                                    <span>Комментарий к работе</span>
+                                    <textarea class="input lesson-form__input" type="text" name="comment" rows="3"></textarea>
+                                </label>
+                                <label class="label lesson-form__label">
+                                    <span>Файл</span>
+                                    <input class="input lesson-form__input" type="file" name="file"
+                                        accept=".pdf,.doc,.docx,.txt" required>
+                                </label>
+                            </div>
+                            <button class="btn lesson-form__btn">Отправить</button>
+                        </form>
+                    @endif
+                @endauth
             </div>
         </div>
     </main>

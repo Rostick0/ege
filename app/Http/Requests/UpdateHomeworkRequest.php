@@ -11,7 +11,7 @@ class UpdateHomeworkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -21,8 +21,18 @@ class UpdateHomeworkRequest extends FormRequest
      */
     public function rules(): array
     {
+        if (auth()?->user()->role === 'teacher') {
+            return [
+                'mark' => 'required|numeric|min:1|max:5',
+                'answer' => 'nullable|max:255',
+                'answer_file_id' => 'nullable|file',
+            ];
+        }
+
         return [
-            //
+            'file' => 'required|file',
+            'comment' => 'nullable|max:65536',
+            'lesson_id' => 'required',
         ];
     }
 }

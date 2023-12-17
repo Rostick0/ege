@@ -1,7 +1,7 @@
 @extends('layout.index')
 
 @section('html')
-    <main>
+    <main class="main">
         <x-contact />
     </main>
 @endsection

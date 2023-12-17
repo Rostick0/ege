@@ -126,6 +126,30 @@ textarea {
     font-size: 14px;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    column-gap: 8px;
+    margin-top: 48px;
+}
+
+.pagination__link {
+    background-color: rgb(170, 65, 225);
+    color: rgb(255, 255, 255);
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.7px;
+    transition: .2s;
+    min-width: 25px;
+}
+
+.pagination__link._active {
+    background-color: black;
+}
+
 .paragraphs {
     display: flex;
     flex-direction: column;
@@ -324,23 +348,22 @@ textarea {
 .coures__plan_title {}
 
 .coures__plan_list {
-	counter-reset: num;
+    counter-reset: num;
     display: flex;
     flex-direction: column;
     row-gap: 4px;
 }
 
 .coures__plan_item::before {
-    content: counter(num) " - "; 
-	counter-increment: num;
+    content: counter(num) " - ";
+    counter-increment: num;
 }
 
 .course__duration_count {
     font-size: 20px;
 }
 
-.course__description {
-}
+.course__description {}
 
 .course-buy {
     display: flex;

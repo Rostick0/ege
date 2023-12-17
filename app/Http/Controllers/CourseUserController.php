@@ -20,6 +20,8 @@ class CourseUserController extends Controller
             ...$request->validated(),
             'user_id' => auth()->id()
         ]);
+
+        return redirect()->back();
     }
 
     public function destroy(int $id)

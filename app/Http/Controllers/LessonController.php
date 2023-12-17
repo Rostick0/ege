@@ -13,6 +13,8 @@ class LessonController extends Controller
     {
         $lessons = Lesson::query();
 
+        if ($request->title) $lessons->where('title', 'LIKE', '%' . $request->title . '%');
+        if ($request->course_id) $lessons->where('course_id', $request->course_id);
 
         $lessons = $lessons->paginate(18);
 

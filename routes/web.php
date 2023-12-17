@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseUserController;
+use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonController;
 use App\Models\Lesson;
 use App\Models\User;
@@ -42,10 +44,12 @@ Route::group([
 
 Route::resource('course', CourseController::class)->only(['index', 'show']);
 Route::resource('lesson', LessonController::class)->only(['index', 'show']);
+Route::resource('course-user', CourseUserController::class)->only(['store', 'destroy']);
+Route::resource('homework', HomeworkController::class)->only(['store', 'update', 'destroy']);
 
 Route::get('teachers', function () {
     $teachers = User::where('role', 'teacher')->get();
-   
+
     return view('pages.teachers', compact('teachers'));
 });
 

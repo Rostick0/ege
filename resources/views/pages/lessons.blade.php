@@ -7,6 +7,8 @@
                 <h2 class="title index-lesson__title">Уроки</h2>
                 <x-lessons :lessons="$lessons" />
 
+
+                {{ $lessons->appends(Request::all())->links('vendor.pagination') }}
             </div>
         </div>
     </main>

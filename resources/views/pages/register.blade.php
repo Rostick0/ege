@@ -27,7 +27,7 @@
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </label>
-                    <button class="btn">Войти</button>
+                    <button class="btn">Регистрация</button>
                 </form>
                 <a class="ui-color" href="{{ route('login') }}">Вход</a>
             </div>

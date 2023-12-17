@@ -25,52 +25,34 @@ class HomeworkController extends Controller
         ];
     }
 
-
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreHomeworkRequest $request)
     {
         Homework::create([
             ...$request->validated(),
             'student_id' => auth()->id(),
         ]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(int $id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateHomeworkRequest $request, int $id)
     {
-        //
+        Homework::findOrFail($id)->update([
+            ...$request->validated(),
+        ]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id)
     {
-        //
+        $homework = Homework::where([
+            'id' => $id,
+            'student_id' =>  auth()->id()
+        ])->delete();
+
+        
+
+        return redirect()->back();
     }
 }
