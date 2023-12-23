@@ -3,9 +3,9 @@
 @section('html')
     <main class="main">
         <div class="lesson">
-            <div class="lesson__banner">
+            <div class="lesson__banner banner" style="background-image: url({{$lesson->image->path}})">
                 <div class="container">
-                    <h1 class="title lesson__title">{{ $lesson->title }}</h1>
+                    <h1 class="title lesson__title banner__title">{{ $lesson->title }}</h1>
                 </div>
             </div>
             <div class="container">

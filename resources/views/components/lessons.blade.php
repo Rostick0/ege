@@ -11,7 +11,7 @@
                         href="/course/{{ $lesson->course_id }}">{{ $lesson->course->title }}</a>
                 </div>
                 <div class="lesson__item_right">
-                    <img class="lesson__item_img" src="{{ $lesson->image?->path }}" alt="" width="150">
+                    <img class="lesson__item_img" src="{{ $lesson->image?->path }}" alt="" width="120" height="120">
                 </div>
             </div>
             <div class="lesson__item_desrcription">{!! mb_substr($lesson->description, 0, 100) . '...' !!}</div>

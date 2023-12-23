@@ -3,7 +3,7 @@
 @section('html')
     <main class="main" style="padding-top:0">
         <div class="course">
-            <div class="course__banner banner">
+            <div class="course__banner banner" style="background-image: url({{$course->image->path}})">
                 <div class="container">
                     <h1 class="title banner__title course__title">{{ $course->title }}</h1>
                 </div>
@@ -13,7 +13,7 @@
                     <h2 class="title course__title">О чем курс:</h2>
                     <div class="paragraphs">{!! $course->short_description !!}</div>
                 </div>
-                <div class="course__grid">
+                <div class="course__grid style-item">
                     <div class="course__plan">
                         <div class="coures__plan_title ui-color">План:</div>
                         <br>
@@ -37,7 +37,7 @@
                 @auth
                     @if ($course->myBue)
                         <div class="course-buy">
-                            <div>Вы уже приорбрели курс, к <a class="ui-color" href="/lesson">урокам</a></div>
+                            <div>Вы уже приорбрели курс, к <a class="ui-color" href="/lesson?course_id={{ $course->id }}">урокам</a></div>
                         </div>
                     @else
                         <form class="course-buy" action="/course-user" method="POST">

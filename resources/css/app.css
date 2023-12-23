@@ -288,6 +288,10 @@ textarea {
     display: flex;
 }
 
+.lesson__item_img {
+    object-fit: cover;
+}
+
 .lesson__item_title {
     display: inline-block;
     font-weight: 600;

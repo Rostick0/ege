@@ -5,6 +5,7 @@
         <div class="lesson">
             <div class="container">
                 <div class="paragraphs">
+                    <p>Уже оцено</p>
                     <p>
                         <strong>Пользователь:</strong> {{ $homework->student->name }}
                     </p>
