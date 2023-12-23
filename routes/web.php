@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Homework;
 use App\Models\Lesson;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,11 +66,17 @@ Route::group([
     Route::group([
         'prefix' => 'student'
     ], function () {
-        Route::get('', function () {
-            $lessons = Lesson::whereHas('course.courseUser', function ($query) {
+        Route::get('', function (Request $request) {
+            $lessons = Lesson::query();
+
+            if ($request->title) $lessons->where('title', 'LIKE', '%' . $request->title . '%');
+            if ($request->course_id) $lessons->where('course_id', $request->course_id);
+
+            $lessons->whereHas('course.courseUser', function ($query) {
                 $query->where('user_id', auth()->id());
-            })
-                ->paginate(18);
+            });
+
+            $lessons = $lessons->paginate(18);
 
             $courses = Course::all();
 
@@ -78,8 +85,7 @@ Route::group([
             })
                 ->whereHas('course.courseUser', function ($query) {
                     $query->where('user_id', auth()->id());
-                })
-                ->paginate(18);
+                })->paginate(18);
 
             return view('pages.student.index', compact('lessons', 'lessons_mark', 'courses'));
         })->name('student');

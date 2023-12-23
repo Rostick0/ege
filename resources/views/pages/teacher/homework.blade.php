@@ -5,7 +5,9 @@
         <div class="lesson">
             <div class="container">
                 <div class="paragraphs">
-                    <p>Уже оцено</p>
+                    @if ($homework->mark)
+                        <p>Уже оцено</p>
+                    @endif
                     <p>
                         <strong>Пользователь:</strong> {{ $homework->student->name }}
                     </p>
